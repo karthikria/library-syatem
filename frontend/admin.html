@@ -39,8 +39,50 @@
     })
     
     </script>
-<script type="module" src="app.js"></script>
+    <script>
 
+async function loadAdminBooks(){
+
+const res = await fetch("http://localhost:5000/books")
+
+const books = await res.json()
+
+document.getElementById("adminBookCount").textContent = books.length
+
+let html=""
+
+books.forEach((b,i)=>{
+
+html += `
+<div class="card">
+
+<div class="card-top">
+<div class="file-icon">📕</div>
+<span class="badge">${b.category}</span>
+</div>
+
+<h3 class="book-title">${b.title}</h3>
+
+<div class="card-buttons">
+<button class ="btn-preview" onclick="preview(${i})">Preview</button>
+<button class = "btn-download" onclick="download(${i})">Download</button>
+<button class = "btn-delete" onclick="deleteBook(${i})">Delete</button>
+</div>
+
+</div>
+`
+
+})
+
+document.getElementById("books").innerHTML = html
+
+}
+
+loadAdminBooks()
+
+</script>
+<script type="module" src="app.js"></script>
+<script type="module" src="auth.js"></script>
 </body>
 
 </html>
