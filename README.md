@@ -149,7 +149,7 @@ Example commands supported:
 
 
 ## Demo
-https://github.com/user-attachments/assets/a580e21f-b8f1-4503-9c39-be6563ecc19d
+
 
 
 ## developed by
