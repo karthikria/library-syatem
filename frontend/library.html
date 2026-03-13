@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js"></script>
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<div class="sidebar">
+
+<h2 class="logo">LibraryHub</h2>
+
+<div class="stats">
+    📚 Total Books: <span id="bookCount">0</span>
+    </div>
+<a href="library.html">Library</a>
+<a href="upload.html">Upload</a>
+<a href="admin.html">Admin</a>
+
+<button class="btn-danger" onclick="logout()">Logout</button>
+
+</div>
+
+<div class="main">
+
+<div class="header">
+
+<h1>Library</h1>
+
+<input id="searchBox" class="search" placeholder="Search books">
+<button class="filter" id="voiceAssistant">🎤 Ask Library</button>
+
+<select id="categoryFilter" class="filter">
+    <option value="all">All Subjects</option>
+    <option value="Programming">Programming</option>
+    <option value="Artificial Intelligence">Artificial Intelligence</option>
+    <option value="Mathematics">Mathematics</option>
+    <option value="Electronics">Electronics</option>
+    </select>
+</div>
+
+<div id="books" class="grid"></div>
+
+<iframe id="viewer"></iframe>
+
+</div>
+
+</div>
+
+<script type="module" src="app.js"></script>
+<script type="module" src="auth.js"></script>
+
+</body>
+
+</html>

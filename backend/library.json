@@ -1,0 +1,23 @@
+{
+  "books": [
+    {
+      "title": "CS3401-Algorithms-Lecture-Notes-1.pdf",
+      "category": "Programming",
+      "file": "1d98786c6196dc5c53074efb7502e8f3.zip"
+    },
+    {
+      "title": "CS3501-Compiler-Design-Lecture-Notes-1.pdf",
+      "category": "Programming",
+      "file": "84d6b58fa59b15923d6dd6b93a372929.zip"
+    },
+    {
+      "title": "CS3591Computer Networks Lecture-Notes-1.pdf",
+      "category": "Programming",
+      "file": "7726b05f995b6d8640d39e185846fd3b.zip"
+    }
+  ],
+  "verifiedUsers": [
+    "s.karthikria@gmail.com",
+    "s.karthik6590@gmail.com"
+  ]
+}

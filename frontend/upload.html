@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="upload-box">
+
+<h2>Upload Study Material</h2>
+
+<select class="filter" id="category">
+
+<option>Programming</option>
+<option>Artificial Intelligence</option>
+<option>Mathematics</option>
+<option>Electronics</option>
+
+</select>
+
+<div id="dropZone" class="drop-zone">
+
+Drag & Drop File
+
+</div>
+
+<input type="file" id="file">
+
+<button class="btn-primary" onclick="upload()">Upload</button>
+
+<div class="progress">
+
+<div id="progressBar"></div>
+
+</div>
+
+</div>
+
+<script type="module" src="app.js"></script>
+
+</body>
+
+</html>

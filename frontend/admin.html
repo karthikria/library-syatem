@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<div class="sidebar">
+
+<h2>Admin</h2>
+<div class="admin-stat">
+    Total Books In Library: <span id="adminBookCount">0</span>
+    </div>
+<a href="library.html">Back to Library</a>
+
+</div>
+
+<div class="main">
+
+<h2>Manage Books</h2>
+
+<div id="books"></div>
+
+</div>
+
+</div>
+<script>
+
+    fetch("http://localhost:5000/books")
+    .then(res=>res.json())
+    .then(data=>{
+    document.getElementById("adminBookCount").textContent = data.length
+    })
+    
+    </script>
+<script type="module" src="app.js"></script>
+
+</body>
+
+</html>

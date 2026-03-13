@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Book Viewer</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<style>
+
+body{
+margin:0;
+background:#0f172a;
+color:white;
+font-family:Arial;
+}
+
+.toolbar{
+display:flex;
+gap:10px;
+padding:10px;
+background:#1e293b;
+align-items:center;
+position:sticky;
+top:0;
+z-index:10;
+}
+
+button{
+padding:6px 12px;
+border:none;
+border-radius:6px;
+background:#3b82f6;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#2563eb;
+}
+
+#pdfContainer{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:20px;
+padding:20px;
+overflow-y:auto;
+height:calc(100vh - 50px);
+}
+
+canvas{
+box-shadow:0 10px 20px rgba(0,0,0,0.6);
+border-radius:6px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="toolbar">
+
+<button onclick="prevPage()">◀</button>
+
+<span id="pageInfo">Page 1</span>
+
+<button onclick="nextPage()">▶</button>
+
+<button onclick="zoomIn()">Zoom +</button>
+
+<button onclick="zoomOut()">Zoom −</button>
+
+</div>
+
+<div id="pdfContainer"></div>
+
+<script>
+
+const params=new URLSearchParams(window.location.search)
+
+const id=params.get("id")
+const user=params.get("user")
+
+const url=`http://localhost:5000/preview/${id}?user=${user}`
+
+let pdfDoc=null
+let pageNum=1
+let scale=1.2
+
+const container=document.getElementById("pdfContainer")
+
+pdfjsLib.getDocument(url).promise.then(pdf=>{
+
+pdfDoc=pdf
+renderAllPages()
+
+})
+
+function renderAllPages(){
+
+container.innerHTML=""
+
+for(let num=1; num<=pdfDoc.numPages; num++){
+
+pdfDoc.getPage(num).then(page=>{
+
+const viewport=page.getViewport({scale:scale})
+
+const canvas=document.createElement("canvas")
+const ctx=canvas.getContext("2d")
+
+canvas.height=viewport.height
+canvas.width=viewport.width
+
+container.appendChild(canvas)
+
+page.render({
+canvasContext:ctx,
+viewport:viewport
+})
+
+})
+
+}
+
+document.getElementById("pageInfo").textContent=
+`Page ${pageNum} / ${pdfDoc.numPages}`
+
+}
+
+function nextPage(){
+
+if(pageNum>=pdfDoc.numPages) return
+
+pageNum++
+
+document.getElementById("pdfContainer").children[pageNum-1]
+.scrollIntoView({behavior:"smooth"})
+
+document.getElementById("pageInfo").textContent=
+`Page ${pageNum} / ${pdfDoc.numPages}`
+
+}
+
+function prevPage(){
+
+if(pageNum<=1) return
+
+pageNum--
+
+document.getElementById("pdfContainer").children[pageNum-1]
+.scrollIntoView({behavior:"smooth"})
+
+document.getElementById("pageInfo").textContent=
+`Page ${pageNum} / ${pdfDoc.numPages}`
+
+}
+
+function zoomIn(){
+
+scale+=0.2
+renderAllPages()
+
+}
+
+function zoomOut(){
+
+if(scale<=0.4) return
+
+scale-=0.2
+renderAllPages()
+
+}
+
+</script>
+
+</body>
+
+</html>
