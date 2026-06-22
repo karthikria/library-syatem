@@ -10,9 +10,12 @@ This system also integrates a voice assistant to enable users to search, open, a
 
 
 
-## Project Structure
 
----
+
+
+
+
+
 
 
 
@@ -150,6 +153,7 @@ Example commands supported:
 
 ## Demo
 
+https://github.com/user-attachments/assets/afec6e0f-a4df-4917-a273-05d00868d883
 
 
 ## developed by
